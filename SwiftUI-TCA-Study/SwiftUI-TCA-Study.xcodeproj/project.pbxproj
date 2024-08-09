@@ -17,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8803794A2C6692BA00867062 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		88C57FFB2C64CAD900B41D36 /* SwiftUI-TCA-Study.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-TCA-Study.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C57FFE2C64CAD900B41D36 /* SwiftUI_TCA_StudyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_TCA_StudyApp.swift; sourceTree = "<group>"; };
 		88C580002C64CAD900B41D36 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,6 +58,7 @@
 		88C57FFD2C64CAD900B41D36 /* SwiftUI-TCA-Study */ = {
 			isa = PBXGroup;
 			children = (
+				8803794A2C6692BA00867062 /* Info.plist */,
 				88C57FFE2C64CAD900B41D36 /* SwiftUI_TCA_StudyApp.swift */,
 				88C580002C64CAD900B41D36 /* ContentView.swift */,
 				88C580022C64CADA00B41D36 /* Assets.xcassets */,
@@ -291,6 +293,7 @@
 				DEVELOPMENT_TEAM = 8T2JAAS967;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SwiftUI-TCA-Study/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -320,6 +323,7 @@
 				DEVELOPMENT_TEAM = 8T2JAAS967;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SwiftUI-TCA-Study/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

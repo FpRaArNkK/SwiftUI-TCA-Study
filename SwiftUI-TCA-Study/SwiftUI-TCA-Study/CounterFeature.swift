@@ -27,6 +27,7 @@ struct CounterFeature {
         case decrementButtonTapped
         case incrementButtonTapped
         case factButtonTapped
+        case factResponse(String)
     }
     
     var body: some ReducerOf<Self> {
@@ -56,10 +57,32 @@ struct CounterFeature {
                 // TCA Seperates Side Effects. - not allowed here
                 // This asynchronous call should be excuted as a side effect
 //                let (data, _) = try await URLSession.shared.data(from: URL(string: "http://numbersapi.com/\(state.count)")!)
+                //                state.fact = String(decoding: data, as: UTF8.self)
+                //                state.isLoading = false
                 // 🛑 'async' call in a function that does not support concurrency
                 // 🛑 Errors thrown from here are not handled
                 
-//                state.fact = String(decoding: data, as: UTF8.self)
+
+                // One way to construct an Effect is via using .run.
+                // This provides you with an asynchronous context.
+                return .run { [count = state.count] send in
+                    // ✅ Do async work in here, and send actions back into the system.
+                    let (data, _) = try await URLSession.shared
+                        .data(from: URL(string: "http://numbersapi.com/\(count)")!)
+                    let fact = String(decoding: data, as: UTF8.self)
+                    
+                    // state.fact = fact
+                    // 🛑 Mutable capture of 'inout' parameter 'state' is not allowed in
+                    //    concurrently-executing code
+                    
+                    // Send to another action with data after performing the asynchronous work
+                    // Through this, you can feed the information from the effect back into reducer
+                    await send(.factResponse(fact))
+                    
+                }
+                
+            case .factResponse(let fact):
+                state.fact = fact
                 state.isLoading = false
                 return .none
             }
