@@ -19,6 +19,8 @@ Reducer엔 아래에 기술되는 내용이 포함된다.
 
 → 서로 모듈화되어 재사용하기 쉽고, 테스트하기 쉽게 된다.
 
+로직 관련된 세부 내용은 코드를 작성하며 다룬다.
+
 ### Section 1 - CounterFeature.swift
 
 ---
@@ -139,6 +141,131 @@ effect를 수행하거나, 데이터를 시스템에 다시 전달, reducer에�
 ## Section 2 - Integrating with SwiftUI
 
 ---
+
+이제 SwiftUI View들에 해당 Reducer의 기능을 연결해보자.
+
+이 과정은 Store라는 새로운 개념을 차용하며, 기능의 런타임을 의미한다.
+
+세부 내용은 코드를 작성하며 다룬다.
+
+### Section 2 - CounterView.swift
+
+---
+
+- 한글 주석
+    
+    ```swift
+    import ComposableArchitecture
+    import SwiftUI
+    
+    struct CounterView: View {
+        // 리듀서를 사용할 View에 Store를 생성합니다.
+        // Store는 상태를 업데이트하고, 효과를 실행하며 데이터를 제공합니다.
+        // @ObservableState() 매크로를 사용하면 Store의 데이터 관찰이 자동으로 이루어집니다.
+        let store: StoreOf<CounterFeature>
+        
+        var body: some View {
+            VStack {
+                // Store에서 상태의 속성을 직접 읽을 수 있습니다.
+                Text("\(store.count)")
+                    .font(.largeTitle)
+                    .padding()
+                    .background(Color.black.opacity(0.1))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                
+                HStack {
+                    Button("-") {
+                        // send(_:) 메서드를 통해 Store에 액션을 보낼 수 있습니다.
+                        store.send(.decrementButtonTapped)
+                    }
+                    .font(.largeTitle)
+                    .padding()
+                    .background(Color.black.opacity(0.1))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    
+                    Button("+") {
+                        store.send(.incrementButtonTapped)
+                    }
+                    .font(.largeTitle)
+                    .padding()
+                    .background(Color.black.opacity(0.1))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
+            }
+        }
+    }
+    
+    #Preview {
+        CounterView(
+            // StoreOf<Feature>를 생성해야 합니다.
+            // 기능이 시작될 초기 상태를 제공합니다.
+            store: Store(initialState: CounterFeature.State()) {
+                // 기능을 구동하는 리듀서를 지정합니다.
+                // 다른 리듀서를 사용하여 프리뷰를 실행해 볼 수 있습니다.
+                CounterFeature()
+            }
+        )
+    }
+    
+    ```
+    
+- 영어 주석
+    
+    ```swift
+    import ComposableArchitecture
+    import SwiftUI
+    
+    struct CounterView: View {
+        // Create a Store in the View where you want to use the reducer.
+        // It can process actions to update the state, execute effects, and feed data.
+        // Observation of the data in the Store happens automatically with the @ObservableState() macro.
+        let store: StoreOf<CounterFeature>
+        
+        var body: some View {
+            VStack {
+                // You can read properties of state directly from the store.
+                Text("\(store.count)")
+                    .font(.largeTitle)
+                    .padding()
+                    .background(Color.black.opacity(0.1))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                
+                HStack {
+                    Button("-") {
+                        // You can send actions to the store via send(_:).
+                        store.send(.decrementButtonTapped)
+                    }
+                    .font(.largeTitle)
+                    .padding()
+                    .background(Color.black.opacity(0.1))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    
+                    Button("+") {
+                        store.send(.incrementButtonTapped)
+                    }
+                    .font(.largeTitle)
+                    .padding()
+                    .background(Color.black.opacity(0.1))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
+            }
+        }
+    }
+    
+    #Preview {
+        CounterView(
+            // You need to construct StoreOf<Feature>.
+            // Provide the initial state that the feature begins in.
+            store: Store(initialState: CounterFeature.State()) {
+                // Specify the reducer powering the feature.
+                // We can run the preview with different reducers to alter how it executes.
+                CounterFeature()
+            }
+        )
+    }
+    
+    ```
+    
 
 ## Section 3 - Intergrating into the app
 

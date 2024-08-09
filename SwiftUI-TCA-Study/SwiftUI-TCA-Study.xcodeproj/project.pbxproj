@@ -13,6 +13,7 @@
 		88C580062C64CADA00B41D36 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88C580052C64CADA00B41D36 /* Preview Assets.xcassets */; };
 		88C5800E2C64CF9F00B41D36 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 88C5800D2C64CF9F00B41D36 /* ComposableArchitecture */; };
 		88C580102C64D04B00B41D36 /* CounterFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C5800F2C64D04B00B41D36 /* CounterFeature.swift */; };
+		88C580142C661E4800B41D36 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C580132C661E4800B41D36 /* CounterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		88C580022C64CADA00B41D36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88C580052C64CADA00B41D36 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		88C5800F2C64D04B00B41D36 /* CounterFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterFeature.swift; sourceTree = "<group>"; };
+		88C580132C661E4800B41D36 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				88C580022C64CADA00B41D36 /* Assets.xcassets */,
 				88C580042C64CADA00B41D36 /* Preview Content */,
 				88C5800F2C64D04B00B41D36 /* CounterFeature.swift */,
+				88C580132C661E4800B41D36 /* CounterView.swift */,
 			);
 			path = "SwiftUI-TCA-Study";
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 				88C580102C64D04B00B41D36 /* CounterFeature.swift in Sources */,
 				88C580012C64CAD900B41D36 /* ContentView.swift in Sources */,
 				88C57FFF2C64CAD900B41D36 /* SwiftUI_TCA_StudyApp.swift in Sources */,
+				88C580142C661E4800B41D36 /* CounterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
