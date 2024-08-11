@@ -1,9 +1,10 @@
-# 1-1. Your First Feature
-
-태그: Essentials
-
+---
+date: ""
+tags:
+  - TCA
+  - Study
+---
 ## Section 1 - Create a reducer
-
 ---
 
 The Composable Architecture의 기본 핵심 기능은 `Reducer() 매크로`와 `Reducer 프로토콜`이다.
@@ -22,7 +23,6 @@ Reducer엔 아래에 기술되는 내용이 포함된다.
 로직 관련된 세부 내용은 코드를 작성하며 다룬다.
 
 ### Section 1 - CounterFeature.swift
-
 ---
 
 - 한글 주석

@@ -20,6 +20,7 @@ struct CounterFeature {
         var count = 0
         var fact: String?
         var isLoading = false
+        var isTimerRunning = false
     }
     
     enum Action {
@@ -28,6 +29,12 @@ struct CounterFeature {
         case incrementButtonTapped
         case factButtonTapped
         case factResponse(String)
+        case toggleTimerButtonTapped
+        case timerTick
+    }
+    
+    enum CancelID {
+        case timer
     }
     
     var body: some ReducerOf<Self> {
@@ -56,13 +63,13 @@ struct CounterFeature {
                 
                 // TCA Seperates Side Effects. - not allowed here
                 // This asynchronous call should be excuted as a side effect
-//                let (data, _) = try await URLSession.shared.data(from: URL(string: "http://numbersapi.com/\(state.count)")!)
+                //                let (data, _) = try await URLSession.shared.data(from: URL(string: "http://numbersapi.com/\(state.count)")!)
                 //                state.fact = String(decoding: data, as: UTF8.self)
                 //                state.isLoading = false
                 // 🛑 'async' call in a function that does not support concurrency
                 // 🛑 Errors thrown from here are not handled
                 
-
+                
                 // One way to construct an Effect is via using .run.
                 // This provides you with an asynchronous context.
                 return .run { [count = state.count] send in
@@ -84,6 +91,28 @@ struct CounterFeature {
             case .factResponse(let fact):
                 state.fact = fact
                 state.isLoading = false
+                return .none
+                
+            case .toggleTimerButtonTapped:
+                state.isTimerRunning.toggle()
+                if state.isTimerRunning {
+                    return .run { send in
+                        while true {
+                            try await Task.sleep(for: .seconds(1))
+                            // Send this action every seconds
+                            await send(.timerTick)
+                        }
+                    }
+                    // Effect cancelation
+                    // It can be cancelled by using .cancel(id:) effect.
+                    .cancellable(id: CancelID.timer)
+                } else {
+                    return .cancel(id: CancelID.timer)
+                }
+                
+            case .timerTick:
+                state.count += 1
+                state.fact = nil
                 return .none
             }
         }
