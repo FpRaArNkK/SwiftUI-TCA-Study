@@ -1,5 +1,5 @@
 ---
-date: ""
+date: 2024-08-08
 tags:
   - TCA
   - Study
