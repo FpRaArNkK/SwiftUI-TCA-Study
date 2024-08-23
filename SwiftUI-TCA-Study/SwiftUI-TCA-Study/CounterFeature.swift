@@ -38,6 +38,7 @@ struct CounterFeature {
     }
     
     @Dependency(\.continuousClock) var clock
+    @Dependency(\.numberFact) var numberFact
     
     var body: some ReducerOf<Self> {
         // body must be declared with Reduce reducer.
@@ -74,20 +75,25 @@ struct CounterFeature {
                 
                 // One way to construct an Effect is via using .run.
                 // This provides you with an asynchronous context.
+//                return .run { [count = state.count] send in
+//                    // ✅ Do async work in here, and send actions back into the system.
+//                    let (data, _) = try await URLSession.shared
+//                        .data(from: URL(string: "http://numbersapi.com/\(count)")!)
+//                    let fact = String(decoding: data, as: UTF8.self)
+//                    
+//                    // state.fact = fact
+//                    // 🛑 Mutable capture of 'inout' parameter 'state' is not allowed in
+//                    //    concurrently-executing code
+//                    
+//                    // Send to another action with data after performing the asynchronous work
+//                    // Through this, you can feed the information from the effect back into reducer
+//                    await send(.factResponse(fact))
+//                    
+//                }
+                
+                // use NumberFactClient via dependency - then send(.factResponse)
                 return .run { [count = state.count] send in
-                    // ✅ Do async work in here, and send actions back into the system.
-                    let (data, _) = try await URLSession.shared
-                        .data(from: URL(string: "http://numbersapi.com/\(count)")!)
-                    let fact = String(decoding: data, as: UTF8.self)
-                    
-                    // state.fact = fact
-                    // 🛑 Mutable capture of 'inout' parameter 'state' is not allowed in
-                    //    concurrently-executing code
-                    
-                    // Send to another action with data after performing the asynchronous work
-                    // Through this, you can feed the information from the effect back into reducer
-                    await send(.factResponse(fact))
-                    
+                    try await send(.factResponse(self.numberFact.fetch(count)))
                 }
                 
             case .factResponse(let fact):

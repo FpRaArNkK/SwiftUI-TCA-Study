@@ -73,4 +73,26 @@ final class CounterFeatureTests: XCTestCase {
             $0.isTimerRunning = false
         }
     }
+    
+    @MainActor
+    func testNumberFact() async {
+        let store = TestStore(initialState: CounterFeature.State()) {
+            CounterFeature()
+        } withDependencies: { dependency in
+            dependency.numberFact.fetch = { "\($0) is a good number." }
+        }
+        
+        // tap fact button + seeing the progress indicator
+        // then the fact is fed back into the system
+        await store.send(.factButtonTapped) {
+            $0.isLoading = true
+//            $0.fact = "???" // but at this point, how can you assert on this result?
+            // we can not predict network result
+        }
+        
+        await store.receive(\.factResponse) {
+            $0.isLoading = false
+            $0.fact = "0 is a good number."
+        }
+    }
 }
