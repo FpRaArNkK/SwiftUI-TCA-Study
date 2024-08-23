@@ -35,4 +35,42 @@ final class CounterFeatureTests: XCTestCase {
             $0.count = 0
         }
     }
+    
+    @MainActor
+    func testTimer() async {
+        // this will be the clock used in feature reducer
+        let clock = TestClock()
+        
+        let store = TestStore(initialState: CounterFeature.State()) {
+            CounterFeature()
+        } withDependencies: {
+            // dependency injection
+            $0.continuousClock = clock
+        }
+        
+        await store.send(.toggleTimerButtonTapped) {
+            $0.isTimerRunning = true
+        }
+        // ❌ An effect returned for this action is still running.
+        //    It must complete before the end of the test. …
+        //  because the TestStore forces you to assert on how your entire feature evolves over time, including effects
+        
+        await clock.advance(by: .seconds(1))
+        await store.receive(\.timerTick) {
+            $0.count = 1
+        }
+        
+        // add aseertion about timer behavior
+//        await store.receive(\.timerTick, timeout: .seconds(2)) { // use key path for singling our from Action enum + explicit timeout checker
+//            $0.count = 1
+//            // ✅ Test Suite 'Selected tests' passed.
+//            //        Executed 1 test, with 0 failures (0 unexpected) in 1.044 (1.046) seconds
+//            //    or:
+//            // ❌ Expected to receive an action, but received none after 0.1 seconds.
+//        }
+        
+        await store.send(.toggleTimerButtonTapped) {
+            $0.isTimerRunning = false
+        }
+    }
 }

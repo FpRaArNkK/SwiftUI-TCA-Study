@@ -61,12 +61,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8820AECE2C78ABBE0093AD48 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		88C57FF22C64CAD900B41D36 = {
 			isa = PBXGroup;
 			children = (
 				88C57FFD2C64CAD900B41D36 /* SwiftUI-TCA-Study */,
 				88F8AB5D2C693DD600C68A0B /* SwiftUI-TCA-StudyTests */,
 				88C57FFC2C64CAD900B41D36 /* Products */,
+				8820AECE2C78ABBE0093AD48 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +155,8 @@
 				88F8AB612C693DD600C68A0B /* PBXTargetDependency */,
 			);
 			name = "SwiftUI-TCA-StudyTests";
+			packageProductDependencies = (
+			);
 			productName = "SwiftUI-TCA-StudyTests";
 			productReference = 88F8AB5C2C693DD600C68A0B /* SwiftUI-TCA-StudyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";

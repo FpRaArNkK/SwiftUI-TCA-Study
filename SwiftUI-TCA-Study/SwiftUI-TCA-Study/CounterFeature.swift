@@ -37,6 +37,8 @@ struct CounterFeature {
         case timer
     }
     
+    @Dependency(\.continuousClock) var clock
+    
     var body: some ReducerOf<Self> {
         // body must be declared with Reduce reducer.
         // - One or more reducers can be composed in this body.
@@ -97,11 +99,15 @@ struct CounterFeature {
                 state.isTimerRunning.toggle()
                 if state.isTimerRunning {
                     return .run { send in
-                        while true {
-                            try await Task.sleep(for: .seconds(1))
-                            // Send this action every seconds
+                        // use continuousClock from extenernal
+                        for await _ in self.clock.timer(interval: .seconds(1)) {
                             await send(.timerTick)
                         }
+//                        while true {
+//                            try await Task.sleep(for: .seconds(1))
+//                            // Send this action every seconds
+//                            await send(.timerTick)
+//                        }
                     }
                     // Effect cancelation
                     // It can be cancelled by using .cancel(id:) effect.
