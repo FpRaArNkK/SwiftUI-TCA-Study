@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8820AED22C78D8A10093AD48 /* NumberFactClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820AED12C78D8A10093AD48 /* NumberFactClient.swift */; };
+		887A80552C8868F700BE7EC8 /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887A80542C8868F700BE7EC8 /* AppFeature.swift */; };
 		88C57FFF2C64CAD900B41D36 /* SwiftUI_TCA_StudyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C57FFE2C64CAD900B41D36 /* SwiftUI_TCA_StudyApp.swift */; };
 		88C580012C64CAD900B41D36 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C580002C64CAD900B41D36 /* ContentView.swift */; };
 		88C580032C64CADA00B41D36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88C580022C64CADA00B41D36 /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		8803794A2C6692BA00867062 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8820AED12C78D8A10093AD48 /* NumberFactClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFactClient.swift; sourceTree = "<group>"; };
+		887A80542C8868F700BE7EC8 /* AppFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeature.swift; sourceTree = "<group>"; };
 		88C57FFB2C64CAD900B41D36 /* SwiftUI-TCA-Study.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-TCA-Study.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C57FFE2C64CAD900B41D36 /* SwiftUI_TCA_StudyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_TCA_StudyApp.swift; sourceTree = "<group>"; };
 		88C580002C64CAD900B41D36 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				88C5800F2C64D04B00B41D36 /* CounterFeature.swift */,
 				8820AED12C78D8A10093AD48 /* NumberFactClient.swift */,
 				88C580132C661E4800B41D36 /* CounterView.swift */,
+				887A80542C8868F700BE7EC8 /* AppFeature.swift */,
 			);
 			path = "SwiftUI-TCA-Study";
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				887A80552C8868F700BE7EC8 /* AppFeature.swift in Sources */,
 				8820AED22C78D8A10093AD48 /* NumberFactClient.swift in Sources */,
 				88C580102C64D04B00B41D36 /* CounterFeature.swift in Sources */,
 				88C580012C64CAD900B41D36 /* ContentView.swift in Sources */,
